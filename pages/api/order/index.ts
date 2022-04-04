@@ -43,7 +43,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse, token) {
             "pending": "https://apx.school/pending-payments"
         },
         "external_reference": order.id,
-        "notification_url": "https://webhook.site/2ae35616-7137-4024-aa9d-606613d77f95"
+        "notification_url": "https://dwf-m9-pagos.vercel.app/api/webhooks/mercadopago",
     });
 
     res.send({
