@@ -1,10 +1,6 @@
 import { firestore } from "lib/firestore";
 
-type OrderData = {
-    status: "pending" | "closed" | "failed",
-}
-
-const collection = firestore.collection("auth");
+const collection = firestore.collection("order");
 export class Order {
     ref: FirebaseFirestore.DocumentReference;
     data: any;
