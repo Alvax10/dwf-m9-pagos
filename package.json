@@ -1,0 +1,31 @@
+{
+  "name": "passwordless",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Alvax10/intro-vercel.git",
+  "author": "Alvax10 <alvaro695547@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
+    "date-fns": "^2.28.0",
+    "firebase-admin": "^10.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.12",
+    "next": "^12.1.2",
+    "parse-bearer-token": "^1.0.1",
+    "random-seed": "^0.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.43",
+    "micro-method-router": "^0.1.0",
+    "typescript": "^4.6.3"
+  }
+}
