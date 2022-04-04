@@ -22,7 +22,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse, token) {
     const order = await Order.createNewOrder({
         additionalInfo: req.body,
         productId,
-        userId: token.id,
+        userId: token.userId,
         status: "pending"
     });
 
