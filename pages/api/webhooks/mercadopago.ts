@@ -18,8 +18,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             await myOrder.pushData();
 
             // MANDO UN MAIL
-            await sendConfirmedEmail(email);
-            await sendProductBoughtEmail(email, productData);
+            sendConfirmedEmail(email);
+            sendProductBoughtEmail(email, productData);
         }
         res.send(order);
     }
