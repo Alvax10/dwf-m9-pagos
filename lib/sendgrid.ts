@@ -1,6 +1,6 @@
 import * as sgMail from "@sendgrid/mail";
 
-export async function sendCodeToEmail(email: string, code: string) {
+export async function sendCodeToEmail(email: string, code: number) {
 
     await sgMail.setApiKey(process.env.API_KEY_SENDGRIND);
     const msg = {
@@ -34,14 +34,14 @@ export async function sendConfirmedEmail(email: string) {
     });
 }
 
-export async function sendProductBoughtEmail(email: string, orderData) {
+export async function sendProductBoughtEmail(email: string, productData) {
     await sgMail.setApiKey(process.env.API_KEY_SENDGRIND);
     const msg = {
         to: email,
         from: "alvaro695547@gmail.com",
-        subject: `Compraste ${orderData.title}!`,
-        text: `La compra ${orderData.title} de ${orderData.unit_price} fue exitosa, esperamos que la disfrutes!`,
-        html: `Compra ${orderData.title}`,
+        subject: `Compraste ${productData.title}!`,
+        text: `La compra ${productData.title} de ${productData.unit_price} fue exitosa, esperamos que la disfrutes!`,
+        html: `Compra ${productData.title}`,
     }
     const enviarMail = await sgMail.send(msg)
     .then(() => {

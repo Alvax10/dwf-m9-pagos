@@ -5,11 +5,14 @@ mercadopago.configure({
 });
 
 export async function getMerchantOrder(id) {
+    console.log("getMerchantId: ", id);
     const res = await mercadopago.merchant_orders.get(id);
+    console.log("Este es el res de mercadoPago: ", res);
     return res.body;
 }
 
-export async function createPreference(data?) {
+export async function createPreference(data) {
+    console.log("Create preference: ", data);
     const res = await mercadopago.preferences.create(data); 
     return res.body;
 }

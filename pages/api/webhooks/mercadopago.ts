@@ -1,26 +1,22 @@
-import { NextApiRequest, NextApiResponse} from "next";
-import { sendConfirmedEmail, sendProductBoughtEmail } from "lib/sendgrid";
-import { getMerchantOrder } from "lib/mercadopago";
 import { Order } from "lib/models/order";
+import { getMerchantOrder } from "lib/mercadopago";
+import { NextApiRequest, NextApiResponse} from "next";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const { id, topic } = req.query;
-    const { email, productData } = req.body;
+    const { topic, id } = req.query;
 
-    if (topic == "merchant_order") { 
+    if (topic == 'merchant_order') { 
 
         const order = await getMerchantOrder(id);
-        if (order.order_status == "paid") {
+        console.log("Esta es la order en el webhook: ", order);
+        if (order.order_status == 'paid') {
             const orderId = order.external_reference;
             const myOrder = new Order(orderId);
             await myOrder.pullData();
-            myOrder.data.status = "closed";
+            myOrder.data.status = 'closed';
             await myOrder.pushData();
 
-            // MANDO UN MAIL
-            sendConfirmedEmail(email);
-            sendProductBoughtEmail(email, productData);
         }
-        res.send(order);
+        res.send({ message: "Todo salió bien!" });
     }
 }

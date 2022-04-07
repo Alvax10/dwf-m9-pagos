@@ -1,10 +1,7 @@
-import gen from "random-seed";
-import { Auth } from "lib/models/auth";
+import { addMinutes } from "date-fns";
 import { User } from "lib/models/user";
-import { addMinutes, toDate } from "date-fns";
+import { Auth } from "lib/models/auth";
 import { sendCodeToEmail } from "lib/sendgrid";
-var seed = "My Secret String Value";
-var random = gen.create(seed);
 
 export async function findOrCreateAuth(email: string): Promise<Auth> {
     const cleanEmail = email.trim().toLocaleLowerCase();
@@ -31,11 +28,15 @@ export async function findOrCreateAuth(email: string): Promise<Auth> {
     }
 }
 
+function randomBetween(min, max) {
+    return Math.ceil(Math.random() * (max - min) + min).toString();
+}
+
 export async function sendCode(email: string) {
 
     try {
         const auth = await findOrCreateAuth(email);
-        const code = random.intBetween(10000, 99999);
+        const code = parseInt(randomBetween(10000, 99999));
         const now = new Date();
         const fifteenMinutes = addMinutes(now, 15);
         await sendCodeToEmail(auth.data.email, code);

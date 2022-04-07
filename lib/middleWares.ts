@@ -10,7 +10,6 @@ export function authMiddleware(callback) {
             res.status(401).send({ message: "No hay token "});
         }
         const decodedToken = decode(token);
-        console.log(decodedToken);
 
         if (decodedToken) {
             callback(req, res, decodedToken);
